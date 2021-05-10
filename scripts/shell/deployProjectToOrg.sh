@@ -4,9 +4,7 @@ if [ $# -eq 0 ]
 then
     echo 'ERROR: MISSION USERNAME'
 else
-    sfdx force:source:deploy -p force-app/ -u $1
-
-    sfdx force:apex:test:run -y -t TestF_PointsService -u $1
+    sfdx force:source:deploy -p force-app/ -u $1 -l RunSpecifiedTests -r TestF_PointsService -c
 fi
 
 #TO USE :

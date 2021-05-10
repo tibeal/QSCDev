@@ -95,9 +95,9 @@ public class TestF_PointsService {
             FieloPLT__ExternalId__c = guid()
         );
         insert program;
-        
-        FieloPLT__ProgramPointType__c ppt = [SELECT Id,RequestPointApproval__c FROM FieloPLT__ProgramPointType__c WHERE FieloPLT__Program__c =: program.Id];
-        ppt.RequestPointApproval__c =  true;
+
+        FieloPLT__ProgramPointType__c ppt = [SELECT Id, FieloPLT__RequestPointApproval__c FROM FieloPLT__ProgramPointType__c WHERE FieloPLT__Program__c =: program.Id];
+        ppt.FieloPLT__RequestPointApproval__c =  true;
         update ppt;
 
         FieloPLT__RuleTrigger__c rt = new FieloPLT__RuleTrigger__c(
@@ -155,10 +155,10 @@ public class TestF_PointsService {
             FieloPLT.SObjectService.setStaticVariables();
             FieloPLT__Event__c event = new FieloPLT__Event__c(FieloPLT__Member__c = member.Id, FieloPLT__Type__c = 'Registration');
             insert event;
-        
+
         	List<FieloPLT__Point__c> pointsToApprove = [SELECT Id, FieloPLT__TotalPoints__c, FieloPLT__ExpirationDate__c, FieloPLT__ExpirationDateCheck__c,FieloPLT__Status__c, CreatedDate FROM FieloPLT__Point__c WHERE FieloPLT__Transaction__r.FieloPLT__Event__c =: event.Id];
         	for(FieloPLT__Point__c p : pointsToApprove){
-            	p.Status__c = 'Approved';
+            	p.FieloPLT__Status__c = 'Approved';
         	}
         	update pointsToApprove;
         Test.stopTest();
