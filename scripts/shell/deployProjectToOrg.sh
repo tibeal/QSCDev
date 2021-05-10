@@ -9,3 +9,4 @@ fi
 
 # TO USE :
 # scripts/shell/deployProjectToOrg.sh username
+# Then go to the org Setup > Deployment Status > Quick deploy
